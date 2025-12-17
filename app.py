@@ -14,5 +14,5 @@ tunnelUrl = tunnel.Tunnel.CreateTunnel(os.getenv("PINGGY_TOKEN"))
 publisher.publish(os.getenv("GITHUB_TOKEN"),publisher.DomainEndPoint(url=tunnelUrl,active=True))
 
 app = FastAPI(title=config.app_name)
-app.mount("/", StaticFiles(directory="static", html=True), name="static")
+app.mount("/", StaticFiles(directory="Controller/static", html=True), name="static")
 
