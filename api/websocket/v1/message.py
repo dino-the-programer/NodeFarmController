@@ -3,7 +3,7 @@ from Controller.api.websocket import connection
 
 router = APIRouter(tags=["message", "network"])
 
-@router.websocket("/subscribe")
+@router.websocket("/ws")
 async def chat_endpoint(websocket: WebSocket):
     await connection.manager.connect(websocket)
     try:

@@ -16,7 +16,6 @@ tunnelUrl = tunnel.Tunnel.CreateTunnel(os.getenv("PINGGY_TOKEN"))
 publisher.publish(os.getenv("GITHUB_TOKEN"),publisher.DomainEndPoint(url=tunnelUrl,active=True))
 
 app = FastAPI(title=config.app_name)
-
 app.include_router(websocketMessage.router,prefix="/ws")
 app.include_router(restMessage.router,prefix="/api/v1")
 app.mount("/", StaticFiles(directory="Controller/static", html=True), name="static")
