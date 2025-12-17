@@ -19,5 +19,5 @@ publisher.publish(os.getenv("GITHUB_TOKEN"),publisher.DomainEndPoint(url=tunnelU
 app = FastAPI(title=config.app_name)
 app.mount("/", StaticFiles(directory="Controller/static", html=True), name="static")
 
-app.include_router(websocketMessage.router,prefix="/network/v1/message")
-app.include_router(restMessage.router,prefix="/api/v1/message")
+app.include_router(websocketMessage.router)
+app.include_router(restMessage.router,prefix="/message")

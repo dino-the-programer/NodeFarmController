@@ -3,7 +3,8 @@ from Controller.api.websocket import connection
 
 router = APIRouter(tags=["test","message"])
 
-router.get("/{msg}")
+router.get("/")
 async def message(msg:str):
+    print(msg)
     await connection.manager.broadcast(msg)
     return {"success":True}
