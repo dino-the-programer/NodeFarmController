@@ -25,6 +25,7 @@ class Project(Base):
 class Frames(Base):
     __tablename__ = "frames"
 
+    id: Mapped[int] = mapped_column(primary_key=True)
     number: Mapped[int] = mapped_column(Integer)
     project_id: Mapped[Project] = mapped_column(ForeignKey("project.id",ondelete="CASCADE"))
     project: Mapped["Project"] = relationship("Project", back_populates="frames")
