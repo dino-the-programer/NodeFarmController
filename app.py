@@ -7,6 +7,9 @@ from Controller.core.config import config
 from Controller.core.logging import setup_logging
 from Controller.db.schema import Base, engine
 from Controller.comms import publisher, tunnel
+from Controller.api.websocket import connection
+from Controller.api.websocket.v1 import message as websocketMessage
+from Controller.api.rest.v1 import message as restMessage
 
 setup_logging()
 Base.metadata.create_all(bind=engine)
@@ -16,3 +19,5 @@ publisher.publish(os.getenv("GITHUB_TOKEN"),publisher.DomainEndPoint(url=tunnelU
 app = FastAPI(title=config.app_name)
 app.mount("/", StaticFiles(directory="Controller/static", html=True), name="static")
 
+app.include_router(websocketMessage.router,prefix="/network/v1/message")
+app.include_router(restMessage.router,prefix="/api/v1/message")

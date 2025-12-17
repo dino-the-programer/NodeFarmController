@@ -1,5 +1,5 @@
-from sqlalchemy import String, Integer, JSON, create_engine
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, sessionmaker
+from sqlalchemy import String, Integer, JSON, ForeignKey, create_engine
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, sessionmaker, relationship
 
 from Controller.core.config import config
 
@@ -18,3 +18,13 @@ class Project(Base):
     name: Mapped[str] = mapped_column(String, index=True)
     file_path: Mapped[str] = mapped_column(String, index=True)
     frameRange: Mapped[tuple[int, int]] = mapped_column(JSON)
+    bookMark: Mapped[int] = mapped_column(Integer)
+    frames: Mapped[list["Frames"]] = relationship("Frames", back_populates="project")
+
+
+class Frames(Base):
+    __tablename__ = "frames"
+
+    number: Mapped[int] = mapped_column(Integer)
+    project_id: Mapped[Project] = mapped_column(ForeignKey("project.id",ondelete="CASCADE"))
+    project: Mapped["Project"] = relationship("Project", back_populates="frames")
