@@ -1,4 +1,4 @@
-from github import Github
+from github import Github,Auth
 from pydantic import BaseModel
 
 class DomainEndPoint(BaseModel):
@@ -6,7 +6,8 @@ class DomainEndPoint(BaseModel):
     active:bool
 
 def publish(token:str,data:DomainEndPoint=DomainEndPoint(url='',active=False)):
-    g = Github(token)
+    auth = Auth.Token(token)
+    g = Github(auth=auth)
     repo = g.get_repo("dino-the-programer/NodeFarmUrlEndPoint")
     file_path = "data.json"
     commit_message = "."
