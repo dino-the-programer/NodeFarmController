@@ -1,7 +1,7 @@
-from sqlalchemy import String, create_engine
+from sqlalchemy import String, Integer, JSON, create_engine
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, sessionmaker
 
-from app.core.config import config
+from Controller.core.config import config
 
 engine = create_engine(config.db_url, connect_args={"check_same_thread": False})
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
@@ -17,3 +17,4 @@ class Project(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(String, index=True)
     file_path: Mapped[str] = mapped_column(String, index=True)
+    frameRange: Mapped[tuple[int, int]] = mapped_column(JSON)

@@ -5,6 +5,8 @@ class Tunnel:
     _instance  = None
     @staticmethod
     def CreateTunnel(token:str,port:int|None=8000):
+        if token==None:
+            raise ValueError("Token Cannot be empty")
         if Tunnel._instance != None:
             if Tunnel._instance.is_active():
                 Tunnel._instance.stop()
