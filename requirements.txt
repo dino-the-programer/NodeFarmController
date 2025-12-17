@@ -4,3 +4,4 @@ websocket
 pygithub
 pinggy
 uvicorn
+sqlalchemy
