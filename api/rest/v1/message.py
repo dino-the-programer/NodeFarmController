@@ -3,7 +3,7 @@ from Controller.api.websocket import connection
 
 router = APIRouter(tags=["test","message"])
 
-router.get("/")
+router.get("/message")
 async def message(msg:str):
     print(msg)
     await connection.manager.broadcast(msg)
