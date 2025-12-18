@@ -4,7 +4,7 @@ import time
 class Tunnel:
     _instance  = None
     @staticmethod
-    def CreateTunnel(token:str,port:int|None=8000):
+    def CreateTunnel(token:str,port:int|None=8000)->str|None:
         if token==None:
             raise ValueError("Token Cannot be empty")
         if Tunnel._instance != None:

@@ -21,7 +21,6 @@ class Project(Base):
     bookMark: Mapped[int] = mapped_column(Integer)
     frames: Mapped[list["Frames"]] = relationship("Frames", back_populates="project")
 
-
 class Frames(Base):
     __tablename__ = "frames"
 
@@ -29,3 +28,9 @@ class Frames(Base):
     number: Mapped[int] = mapped_column(Integer)
     project_id: Mapped[Project] = mapped_column(ForeignKey("project.id",ondelete="CASCADE"))
     project: Mapped["Project"] = relationship("Project", back_populates="frames")
+
+class Worker(Base):
+    __tablename__ = "worker"
+
+    id:Mapped[int] = mapped_column(primary_key=True,index=True)
+    email:Mapped[String] = mapped_column(String)
