@@ -10,7 +10,8 @@ from Controller.api.rest.v1 import message
 
 setup_logging()
 Base.metadata.create_all(bind=engine)
-initialize()
+if not initialize():
+    print("cannot connect to internet")
 
 app = FastAPI(title=config.app_name)
 
