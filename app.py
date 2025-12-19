@@ -10,12 +10,13 @@ from Controller.api.rest.v1 import message
 
 setup_logging()
 Base.metadata.create_all(bind=engine)
+
 if not initialize():
     print("cannot connect to internet")
 
 app = FastAPI(title=config.app_name)
 
 app.include_router(worker.router,prefix="/network/v1")
-app.include_router(message.router,prefix="/api/v1")
+app.include_router(message.router,prefix="/api/v1/message")
 
 app.mount("/", StaticFiles(directory="Controller/static", html=True), name="static")

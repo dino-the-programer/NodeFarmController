@@ -11,6 +11,8 @@ async def websocket_endpoint(websocket: WebSocket, email:str):
     try:
         while True:
             data = await websocket.receive_text()
-            await manager.broadcast(f"Broadcast: {data}")
+            await manager.send(websocket,f"ping: {data}")
     except WebSocketDisconnect:
         manager.disconnect(websocket)
+    except RuntimeError:
+        print("Connection not accepted")

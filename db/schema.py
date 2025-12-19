@@ -33,4 +33,4 @@ class Worker(Base):
     __tablename__ = "worker"
 
     id:Mapped[int] = mapped_column(primary_key=True,index=True)
-    email:Mapped[String] = mapped_column(String)
+    email:Mapped[String] = mapped_column(String,unique=True,index=True)
