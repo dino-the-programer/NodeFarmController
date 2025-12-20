@@ -22,7 +22,7 @@ class ConnectionManager:
         id = service.create_worker(clientInfo.email).id
         if self.search(id) != None:
             await websocket.accept()
-            await websocket.close(code=status.WS_1008_POLICY_VIOLATION,reason="Already Connected from another isntance")
+            await websocket.close(code=status.WS_1000_NORMAL_CLOSURE,reason="Already Connected from another isntance")
             return
         self.active_connections.append(Connection(socket=websocket,id=id))
         await websocket.accept()
