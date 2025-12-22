@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException
-from Controller.api.websocket import ConnectionManager
+from Controller.api.network import ConnectionManager
 from Controller.models.message import MessageSend
 from Controller.db.schema import SessionLocal
 from Controller.services.worker_service import WorkerService

@@ -5,7 +5,7 @@ from Controller.core.config import config
 from Controller.core.startup import initialize
 from Controller.core.logging import setup_logging
 from Controller.db.schema import Base, engine
-from Controller.api.websocket.v1 import worker
+from Controller.api.network.v1 import worker
 from Controller.api.rest.v1 import message
 from Controller.frontend.ui import ui
 
