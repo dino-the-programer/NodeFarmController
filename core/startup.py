@@ -12,10 +12,10 @@ class MyTunnelHandler(pinggy.BaseTunnelHandler):
         print(f"🌐 New visitor from: {remote_addr}")
 
     def on_error(self, error):
-        initialize()
-
+        print(f"❌ Tunnel error: {error}")
     def on_tunnel_closed(self):
         print("❌ Tunnel closed")
+        initialize()
 
 def initialize() -> bool:
     try:
