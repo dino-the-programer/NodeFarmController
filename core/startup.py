@@ -2,6 +2,20 @@ from dotenv import load_dotenv
 import os
 load_dotenv()
 from Controller.comms import publisher, tunnel
+import pinggy
+
+class MyTunnelHandler(pinggy.BaseTunnelHandler):
+    def on_tunnel_ready(self, url):
+        print(f"🚀 Public URL is live: {url}")
+
+    def on_connection(self, remote_addr):
+        print(f"🌐 New visitor from: {remote_addr}")
+
+    def on_error(self, error):
+        initialize()
+
+    def on_tunnel_closed(self):
+        print("❌ Tunnel closed")
 
 def initialize() -> bool:
     try:
@@ -9,7 +23,7 @@ def initialize() -> bool:
         if pinggyToken == None:
             return False
         else:
-            tunnelUrl = tunnel.Tunnel.CreateTunnel(pinggyToken)
+            tunnelUrl = tunnel.Tunnel.CreateTunnel(pinggyToken,MyTunnelHandler)
         githubToken = os.getenv("GITHUB_TOKEN")
         if githubToken != None:
             if tunnelUrl!=None:
