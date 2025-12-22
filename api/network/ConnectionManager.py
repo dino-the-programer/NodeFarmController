@@ -4,7 +4,7 @@ from Controller.models.message import SubcribeWorker
 from Controller.db.schema import SessionLocal
 from Controller.services.worker_service import WorkerService
 from Controller.models.connection import Connection
-from Controller.frontend.ui import ui, workerListUI, worker_list_ui
+from Controller.frontend.admindashboard import workerListUI, worker_list_ui
 
 
 def getWorkerService() -> WorkerService: 

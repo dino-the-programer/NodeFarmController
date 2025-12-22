@@ -8,7 +8,7 @@ from Controller.db.schema import Base, engine
 from Controller.api.network.v1 import worker
 from Controller.api.rest.v1 import message
 from Controller.api.rest.v1 import tool
-from Controller.frontend.ui import ui
+from Controller.frontend.admindashboard import ui
 
 setup_logging()
 Base.metadata.create_all(bind=engine)
@@ -27,6 +27,6 @@ app.include_router(tool.router,prefix="/api/v1/tool")
 ui.run_with(
     app=app,
     # storage_secret='your private secret', # Required for user storage, dark mode persistence, etc.
-    title="Test App",
-    favicon="client.png"
+    title="NodeFarm",
+    # favicon="client.png"
 )
