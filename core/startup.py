@@ -5,15 +5,7 @@ from Controller.comms import publisher, tunnel
 import pinggy
 
 class MyTunnelHandler(pinggy.BaseTunnelHandler):
-    def on_tunnel_ready(self, url):
-        print(f"🚀 Public URL is live: {url}")
-
-    def on_connection(self, remote_addr):
-        print(f"🌐 New visitor from: {remote_addr}")
-
-    def on_error(self, error):
-        print(f"❌ Tunnel error: {error}")
-    def on_tunnel_closed(self):
+    def disconnected(self, msg):
         print("❌ Tunnel closed")
         initialize()
 
