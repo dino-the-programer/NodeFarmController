@@ -1,5 +1,5 @@
 from fastapi import APIRouter, WebSocket, WebSocketDisconnect
-from Controller.api.websocket.ConnectionManager import manager
+from Controller.api.network.ConnectionManager import manager
 from Controller.models.message import SubcribeWorker
 from Controller.services.worker_service import WorkerService
 
